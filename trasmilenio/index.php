@@ -10,6 +10,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/animate.css">
         <script type="text/javascript" src="./js/operaciones.js"></script>
         <script type="text/javascript" src="./js/generador.js"></script>
 
@@ -23,42 +24,53 @@
         </div>
 
         <div class="container" >
+          <div class="btn btn-primary " onclick="clic()" id="mover">el boton</div>
             <div class="row">
-                <div class="col amrg" >
-                    Estación
-                    <div id="estacion" class="col amrg">
-                        ingresan:
-                    </div>
-                </div>
-                <div class="col amrg" >
-                    Bus 1
-                    <div id="bus1" class="col amrg">
-                        ingresan:
-                    </div>
-                </div>
-                <div class="col amrg">
-                    Bus 2
-                    <div id="bus2" class="col amrg">
-                        ingresan:
-                    </div>
-                </div>
-                <div class="col amrg">
-                    Bus 3
-                    <div id="bus3" class="col amrg">
-                        ingresan:
-                    </div>
-                </div>
-                <div class="col amrg">
-                    Bus 4
-                    <div id="bus4" class="col amrg">
-                        ingresan:
-                    </div>
-                </div>
+
                 <div class="col amrg">
                     Tiempo: <span class="badge badge-info" id="contador"> </span>
                     Usuarios actuales:<span class="badge badge-info" id="usuarios_actuales"> </span>
                     <div class="btn btn-primary" style="display:none"> <a id="descargar">descarga</a> </div>
                 </div>
+            </div>
+            <div class="row">
+              <div class="col amrg" >
+                  Bus A
+                  <div id="busa" class="col amrg">
+                      ingresan:
+                  </div>
+              </div>
+              <div class="col amrg" >
+                  Bus B
+                  <div id="busb" class="col amrg">
+                      ingresan:
+                  </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col amrg" >
+                  Estación
+                  <div id="estacion" class="col amrg" style="height: 100px;">
+
+                  </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col amrg" >
+                  Bus C
+                  <div id="busc" class="col amrg">
+                      ingresan:
+                  </div>
+              </div>
+              <div class="col amrg" >
+                  Bus D
+                  <div id="busd" class="col amrg">
+                      ingresan:
+                  </div>
+              </div>
+
             </div>
 
 

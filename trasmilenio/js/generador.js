@@ -64,7 +64,6 @@ function prueba_promedio(){
 
 
 
-
 window.onload = function() {
     //funcion(1);
 }

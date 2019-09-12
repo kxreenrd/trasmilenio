@@ -13,26 +13,25 @@ var h_pico1_i = '5:30am';
 var h_pico1_f = '8:00am';
 var h_pico2_i = '4:30pm';
 var h_pico2_f = '8:00pm';
-
+var time_interval = 6000;
 var usu_actu = 0;
 var d;
+var u = 0;
 
 function tiempo(data){
   d = data.split(',');
   //console.log(d);
-
     var sum = 0;
     var n = 0;
 
     var semilla = 8;
     var l = document.getElementById("contador");
     var usu_ac = document.getElementById("usuarios_actuales");;
-    console.log();
     window.setInterval(function(){
         if(n < d.length){
             l.innerHTML = n;
 
-            console.log(n, d[n], d[n]*10);
+            //console.log(n, d[n], d[n]*10);
             var ent = d[n]*10;
             n++;
             var round = 0;
@@ -47,25 +46,75 @@ function tiempo(data){
             usu_actu = sum;
             usu_ac.innerHTML = usu_actu;
             if(sum < capacidad_estacion){
-                ingreso_estacion(sum, d[n]);
+              ingreso_estacion(sum, d[n], round);
             } else {
                 ingreso_estacion(-1);
             }
         }
-
-    },100);
+    },time_interval);
 }
 
-function ingreso_estacion(ingreso, n){
+function ingreso_estacion(ingreso, n, cant){
+
     //console.log('ingreso',ingreso);
     if(ingreso < 0){
-        document.getElementById('estacion').innerHTML =
-                        '<span class="badge badge-danger" style="white-space: normal;"> La estación se lleno </span>';
+        /*document.getElementById('estacion').innerHTML =
+                        '<span class="badge badge-danger" style="white-space: normal;"> La estación se lleno </span>';*/
+        console.log('a:',bus_a)
+        console.log('b:',bus_b)
+        console.log('c:',bus_c)
+        console.log('d:',bus_d)
     } else {
-        document.getElementById('estacion').innerHTML = ingreso;
+
+      if(cant>0){
+        var inter = Math.round(time_interval/cant);
+        var i = 0;
+          console.log("cant", cant);
+          window.setInterval(function(){
+            document.getElementById("estacion").innerHTML =document.getElementById("estacion").innerHTML+ '<div class="circulo animated bounceInLeft class'+u+'" id="p_'+u+'_'+i+'"></div>';
+            setTimeout(function(){
+              var div_1 = document.getElementById('p_'+u+'_'+i);
+              console.log('i',i, div_1);
+              if(div_1){
+                div_1.className = 'circulo';
+              }
+
+            },(inter+400))
+            i++
+          },inter);
+         //
+
+      }
+      //delete_class_element(u);
+      u++;
+      //console.log(cant)
+        //document.getElementById('estacion').innerHTML = ingreso;
+/*
+
+
+
+
+
+          //continue;
+
+        }*/
         a_que_bus(n);
     }
 
+
+}
+
+function delete_class_element(u){
+  var u_class = document.getElemetsByClassName('class'+u);
+  for(var k in u_class){
+    u_class[k].className = 'circulo';
+  }
+
+
+
+}
+
+function tipo_persona(){
 
 }
 
@@ -80,18 +129,35 @@ function a_que_bus(rnd){
         entra_busD();
     }
 }
-function entra_busA(){
 
-    console.log('entro A');
+var bus_a = 0;
+function entra_busA(){
+  bus_a++;
+  document.getElementById('busa').innerHTML = bus_a;
+    //console.log('entro A', bus_a);
 }
+var bus_b = 0;
 function entra_busB(){
-    console.log('entro B');
+  bus_b++;
+  document.getElementById('busb').innerHTML = bus_b;
+    //console.log('entro B', bus_b);
 }
+var bus_c = 0;
 function entra_busC(){
-    console.log('entro C');
+  bus_c++;
+  document.getElementById('busc').innerHTML = bus_c;
+    //console.log('entro C', bus_c);
 }
+var bus_d = 0;
 function entra_busD(){
-    console.log('entro D');
+  bus_d++;
+  document.getElementById('busd').innerHTML = bus_d;
+    //console.log('entro D', bus_d);
+}
+
+
+function clic(){
+  document.getElementById('mover').className = 'btn btn-primary animated bounceInLeft';
 }
 
 window.onload = function() {

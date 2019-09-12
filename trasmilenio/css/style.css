@@ -5,22 +5,36 @@
 }
 
 .circulo {
-     width: 10px;
-     height: 10px;
+     width: 15px;
+     height: 15px;
      border-radius: 50%;
      background: #004085;
     float: left;
     margin: 2px;
+    font-size: 8px;
+    color: #000;
+    text-align: center;
 }
 
-.rombo {
-     width: 10px;
-     height: 10px;
-     border: 3px solid #555;
-     background: #428bca;
-     -webkit-transform: rotate(45deg);
-     -moz-transform: rotate(45deg);
-     -ms-transform: rotate(45deg);
-     -o-transform: rotate(45deg);
-     transform: rotate(45deg);
+.circulo2 {
+     width: 15px;
+     height: 15px;
+     border-radius: 50%;
+     background: #007bff;
+    float: left;
+    margin: 2px;
+    font-size: 8px;
+    color: #000;
+    text-align: center;
+}
+
+.cuadrado {
+     width: 15px;
+     height: 15px;
+     background: #17a2b8;
+     float: left;
+     margin: 2px;
+     font-size: 8px;
+     color: #000;
+     text-align: center;
 }

@@ -9,6 +9,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./css/animate.css">
         <script type="text/javascript" src="./js/operaciones.js"></script>
@@ -17,58 +18,45 @@
         <title></title>
     </head>
     <body>
-
-        <div class="jumbotron text-center">
-            <h1>My First Bootstrap Page</h1>
-            <p>Resize this responsive page to see the effect!</p>
-        </div>
+      <div class="row"></div>
 
         <div class="container" >
-          <div class="btn btn-primary " onclick="clic()" id="mover">el boton</div>
             <div class="row">
 
                 <div class="col amrg">
                     Tiempo: <span class="badge badge-info" id="contador"> </span>
-                    Usuarios actuales:<span class="badge badge-info" id="usuarios_actuales"> </span>
+                    Usuarios actuales en la estacion:<span class="badge badge-info" id="usuarios_actuales"> </span>
                     <div class="btn btn-primary" style="display:none"> <a id="descargar">descarga</a> </div>
                 </div>
             </div>
             <div class="row">
+              <div class="col-sm-2 " ></div>
               <div class="col amrg" >
                   Bus A
-                  <div id="busa" class="col amrg">
-                      ingresan:
-                  </div>
+                  <div id="busa" class="col amrg" style="height: 150px;"></div>
               </div>
               <div class="col amrg" >
                   Bus B
-                  <div id="busb" class="col amrg">
-                      ingresan:
-                  </div>
+                  <div id="busb" class="col amrg" style="height: 150px;"></div>
               </div>
 
             </div>
             <div class="row">
+              <div class="col-sm-2 amrg" ></div>
               <div class="col amrg" >
-                  Estación
-                  <div id="estacion" class="col amrg" style="height: 100px;">
-
-                  </div>
+                  <div id="estacion" class="col amrg" style="height: 230px;">    </div>
               </div>
 
             </div>
             <div class="row">
+              <div class="col-sm-2 " ></div>
               <div class="col amrg" >
                   Bus C
-                  <div id="busc" class="col amrg">
-                      ingresan:
-                  </div>
+                  <div id="busc" class="col amrg" style="height: 150px;"></div>
               </div>
               <div class="col amrg" >
                   Bus D
-                  <div id="busd" class="col amrg">
-                      ingresan:
-                  </div>
+                  <div id="busd" class="col amrg" style="height: 150px;"></div>
               </div>
 
             </div>

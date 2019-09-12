@@ -3,7 +3,7 @@ var habitantes = 300000;
 var adultos = habitantes*0.6; //espacio = 0.5m^2
 var discapacitados = habitantes*0.05; //espacio = 1m^2
 var p_usan = habitantes*0.9;
-var capacidad_estacion = 430;
+let capacidad_estacion = 12;//430;
 var capacidad_bus = 275;
 var tiempo_llegada = 5;
 var tiempo_espera = 1;
@@ -13,147 +13,154 @@ var h_pico1_i = '5:30am';
 var h_pico1_f = '8:00am';
 var h_pico2_i = '4:30pm';
 var h_pico2_f = '8:00pm';
-var time_interval = 6000;
-var usu_actu = 0;
+var time_interval = 1000;//10min * 60 = 600s * 1000 = 600.000
+var time_total = 600000;
+var tiempo_suma = 0;
+var usu_actu = 0; //usuarios actuales
 var d;
-var u = 0;
+var u = 0; //numero usuario
+
+var bus_a = 0;
+var bus_b = 0;
+var bus_c = 0;
+var bus_d = 0;
 
 function tiempo(data){
   d = data.split(',');
-  //console.log(d);
-    var sum = 0;
-    var n = 0;
+  var n = 0;
+  var semilla = 8;
+  var l = document.getElementById("contador");
+  var usu_ac = document.getElementById("usuarios_actuales");;
+  var im = window.setInterval(function(){
+      if(n < time_total){
+          l.innerHTML = n; //tiempo
+          var ent = d[n]*10;
+          var round = enteros(ent);
+          usu_actu += round;
+          console.log('usu_actu',usu_actu);
+          if(usu_actu < capacidad_estacion){
+            ingreso_estacion(usu_actu, d[n], round);
+            usu_ac.innerHTML = usu_actu; //usuarios actuales
+          } else {
+              clearInterval(im);
+              ingreso_estacion(-1);
+              console.log('ACABO', usu_actu, u);
 
-    var semilla = 8;
-    var l = document.getElementById("contador");
-    var usu_ac = document.getElementById("usuarios_actuales");;
-    window.setInterval(function(){
-        if(n < d.length){
-            l.innerHTML = n;
+          }
+          n++;
+      }
+      if(tiempo_suma>=time_total){
+        clearInterval(im);
+      }
+      tiempo_suma = tiempo_suma+time_interval;
 
-            //console.log(n, d[n], d[n]*10);
-            var ent = d[n]*10;
-            n++;
-            var round = 0;
-            if(ent >= 1){
-              round = Math.round(ent);
-            } else {
-              ent *= 10;
-              round = Math.round(ent);
-            }
+  },time_interval);
 
-            sum += round;
-            usu_actu = sum;
-            usu_ac.innerHTML = usu_actu;
-            if(sum < capacidad_estacion){
-              ingreso_estacion(sum, d[n], round);
-            } else {
-                ingreso_estacion(-1);
-            }
-        }
-    },time_interval);
 }
+/*
+Devuelve el numero aleatorio decimal en entero
+*/
+function enteros(ent){
 
-function ingreso_estacion(ingreso, n, cant){
-
-    //console.log('ingreso',ingreso);
+  var round = 0;
+  if(ent >= 1){
+    round = Math.round(ent);
+  } else {
+    ent *= 10;
+    round = Math.round(ent);
+  }
+  return round;
+}
+/*
+Valida el ingreso a la estación
+*/
+function ingreso_estacion(ingreso, n = null, cant = null){
+  var div = document.getElementById('estacion');
     if(ingreso < 0){
-        /*document.getElementById('estacion').innerHTML =
-                        '<span class="badge badge-danger" style="white-space: normal;"> La estación se lleno </span>';*/
+        div.style.border = '2px solid red';
+        div.classList.add('animated', 'infinite', 'flash');
         console.log('a:',bus_a)
         console.log('b:',bus_b)
         console.log('c:',bus_c)
         console.log('d:',bus_d)
     } else {
-
+      //u++;
       if(cant>0){
-        var inter = Math.round(time_interval/cant);
-        var i = 0;
-          console.log("cant", cant);
-          window.setInterval(function(){
-            document.getElementById("estacion").innerHTML =document.getElementById("estacion").innerHTML+ '<div class="circulo animated bounceInLeft class'+u+'" id="p_'+u+'_'+i+'"></div>';
-            setTimeout(function(){
-              var div_1 = document.getElementById('p_'+u+'_'+i);
-              console.log('i',i, div_1);
-              if(div_1){
-                div_1.className = 'circulo';
-              }
-
-            },(inter+400))
-            i++
-          },inter);
-         //
-
+        var inter = time_interval/cant;
+        var i = 1;
+        var it = window.setInterval(function(){
+        u++;
+        var node = document.createElement("div");
+        node.id ='p_'+u;
+        //console.log(,u)
+        node.innerHTML = u;
+        node.className = tipo_persona(n)+' animated bounceInLeft';
+        document.getElementById("estacion").appendChild(node);
+          if(i == cant){
+            clearInterval(it);
+          }
+          a_que_bus(n, node, u, i);
+          i++
+          //clearInterval(it);
+        },inter);
+        //console.log('it',it);
       }
-      //delete_class_element(u);
-      u++;
-      //console.log(cant)
-        //document.getElementById('estacion').innerHTML = ingreso;
-/*
+      //u++;
 
-
-
-
-
-          //continue;
-
-        }*/
-        a_que_bus(n);
     }
-
-
 }
 
-function delete_class_element(u){
-  var u_class = document.getElemetsByClassName('class'+u);
-  for(var k in u_class){
-    u_class[k].className = 'circulo';
+
+
+function tipo_persona(rnd){
+  //console.log(rnd);
+  var rt;
+  if(rnd > 0.6){
+    rt = 'circulo';
+  } else if(rnd < 0.05){
+    rt = 'cuadrado';
+  } else {
+    rt = 'circulo2';
   }
-
-
-
+  return rt;
 }
 
-function tipo_persona(){
 
-}
-
-function a_que_bus(rnd){
+function a_que_bus(rnd, node, u , i){
+  //setTimeout(function(){
     if(rnd > 0 && rnd <= 0.25){
-        entra_busA();
+        style_person('#007bff', 'bounceInUp', 'busa');
+        bus_a++;
     } else if(rnd > 0.25 && rnd <= 0.5){
-        entra_busB();
+        style_person('#17a2b8', 'bounceInUp', 'busb');
+        bus_b++;
     }else if(rnd > 0.5 && rnd <= 0.75){
-        entra_busC();
+        style_person('#004085', 'bounceInDown', 'busc');
+        bus_c++;
     }else if(rnd > 0.75 && rnd <= 1){
-        entra_busD();
+        style_person('#b3d7ff', 'bounceInDown', 'busd');
+        bus_d++;
     }
+
+    //},100);
 }
 
-var bus_a = 0;
-function entra_busA(){
-  bus_a++;
-  document.getElementById('busa').innerHTML = bus_a;
-    //console.log('entro A', bus_a);
+function style_person(color, movimiento, bus){
+
+    if(u >1){
+
+      var at = document.getElementById('p_'+(u-1));
+      var cll = (at.getAttribute('class')).split(' ');
+      at.style.background = color;
+      at.className = cll[0]+' animated '+ movimiento;
+      $(at).detach().appendTo('#'+bus);
+      usu_actu--;
+      console.log(' resta usu_actu',usu_actu);
+    }
+
 }
-var bus_b = 0;
-function entra_busB(){
-  bus_b++;
-  document.getElementById('busb').innerHTML = bus_b;
-    //console.log('entro B', bus_b);
-}
-var bus_c = 0;
-function entra_busC(){
-  bus_c++;
-  document.getElementById('busc').innerHTML = bus_c;
-    //console.log('entro C', bus_c);
-}
-var bus_d = 0;
-function entra_busD(){
-  bus_d++;
-  document.getElementById('busd').innerHTML = bus_d;
-    //console.log('entro D', bus_d);
-}
+
+
 
 
 function clic(){

@@ -986,6 +986,7 @@
 .bounceInLeft {
   -webkit-animation-name: bounceInLeft;
   animation-name: bounceInLeft;
+  animation-iteration-count: 1;
 }
 
 @-webkit-keyframes bounceInRight {
@@ -3561,6 +3562,7 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  animation-iteration-count: 1;
 }
 
 .animated.infinite {

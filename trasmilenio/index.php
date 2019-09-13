@@ -30,32 +30,33 @@
                 </div>
             </div>
             <div class="row">
-              <div class="col-sm-2 " ></div>
+              <div class="col-sm-1 " ></div>
               <div class="col amrg" >
-                  Bus A
+                  Bus A <span class="badge badge-primary" id="c_ba">0 </span>
                   <div id="busa" class="col amrg" style="height: 150px;"></div>
               </div>
               <div class="col amrg" >
-                  Bus B
+                  Bus B <span class="badge badge-primary" id="c_bb">0 </span>
                   <div id="busb" class="col amrg" style="height: 150px;"></div>
               </div>
 
             </div>
             <div class="row">
-              <div class="col-sm-2 amrg" ></div>
+              <div class="col-sm-1 amrg" ></div>
               <div class="col amrg" >
+                  Estacion <span class="badge badge-primary" id="c_estacion">0 </span>
                   <div id="estacion" class="col amrg" style="height: 230px;">    </div>
               </div>
 
             </div>
             <div class="row">
-              <div class="col-sm-2 " ></div>
+              <div class="col-sm-1 " ></div>
               <div class="col amrg" >
-                  Bus C
+                  Bus C <span class="badge badge-primary" id="c_bc">0 </span>
                   <div id="busc" class="col amrg" style="height: 150px;"></div>
               </div>
               <div class="col amrg" >
-                  Bus D
+                  Bus D <span class="badge badge-primary" id="c_bd">0 </span>
                   <div id="busd" class="col amrg" style="height: 150px;"></div>
               </div>
 

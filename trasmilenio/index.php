@@ -18,11 +18,13 @@
         <title></title>
     </head>
     <body>
+      <div id="sol"></div>
+      <div id="luna"></div>
       <div class="row"></div>
 
-        <div class="container" >
+        <div class="espacio" >
             <div class="row">
-
+              <div class="btn btn-info" onclick="tiempo(data)"> Iniciar </div>
                 <div class="col amrg">
                     Tiempo: <span class="badge badge-info" id="contador"> </span>
                     Usuarios actuales en la estacion:<span class="badge badge-info" id="usuarios_actuales"> </span>
@@ -30,34 +32,40 @@
                 </div>
             </div>
             <div class="row">
-              <div class="col-sm-1 " ></div>
+
+
+
+            </div>
+            <div class="row">
+              <!--<div class="col-sm-1 " ></div>-->
               <div class="col amrg" >
-                  Bus A <span class="badge badge-primary" id="c_ba">0 </span>
-                  <div id="busa" class="col amrg" style="height: 150px;"></div>
+                   <span class="badge badge-primary cantidad" id="c_ba">0 </span>
+                  <div id="busa" class="col bus" ></div>
               </div>
+
               <div class="col amrg" >
-                  Bus B <span class="badge badge-primary" id="c_bb">0 </span>
-                  <div id="busb" class="col amrg" style="height: 150px;"></div>
+                   <span class="badge badge-primary cantidad" id="c_bb">0 </span>
+                  <div id="busb" class="col bus"></div>
               </div>
 
             </div>
             <div class="row">
               <div class="col-sm-1 amrg" ></div>
-              <div class="col amrg" >
-                  Estacion <span class="badge badge-primary" id="c_estacion">0 </span>
-                  <div id="estacion" class="col amrg" style="height: 230px;">    </div>
+              <div class="col  estacion" >
+                  <span class="badge badge-primary cantidad" id="c_estacion" >0 </span>
+                  <div id="estacion" class="col amrg" style="height: 150px;">    </div>
               </div>
 
             </div>
             <div class="row">
-              <div class="col-sm-1 " ></div>
+              <!--<div class="col-sm-1 " ></div>-->
               <div class="col amrg" >
-                  Bus C <span class="badge badge-primary" id="c_bc">0 </span>
-                  <div id="busc" class="col amrg" style="height: 150px;"></div>
+                  <span class="badge badge-primary cantidad" id="c_bc">0 </span>
+                  <div id="busc" class="col bus " ></div>
               </div>
               <div class="col amrg" >
-                  Bus D <span class="badge badge-primary" id="c_bd">0 </span>
-                  <div id="busd" class="col amrg" style="height: 150px;"></div>
+                  <span class="badge badge-primary cantidad" id="c_bd">0 </span>
+                  <div id="busd" class="col bus" ></div>
               </div>
 
             </div>
@@ -88,14 +96,13 @@
             ?>
               var data = "<?php echo fgets($f);?>";
               //console.log('la data',data);
-              tiempo(data);
+              //tiempo(data);
             <?php
           } else {
             ?>
-            console.log(elem);
-            funcion(1);
-                setTimeout(function(){elem.click();});
-
+            //console.log(elem);
+            generar(1);
+                //setTimeout(function(){elem.click();});
              <?php
           }
          ?>

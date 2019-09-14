@@ -3,7 +3,7 @@ var habitantes = 300000;
 var adultos = habitantes * 0.9; //espacio = 0.5m^2 //270.000
 var discapacitados = habitantes * 0.05; //espacio = 1m^2 //13.500
 let capacidad_estacion = 430;//430;
-var capacidad_bus = 275;//275;
+let capacidad_bus = 275;//275;
 var tiempo_llegada = 5;
 var tiempo_espera = 1;
 var h_inicio = 4; //4am
@@ -25,7 +25,8 @@ var bus_c = 0;
 var bus_d = 0;
 
 function tiempo(data) {
-    d = data.split(',');
+    //d = data.split(',');
+    d = data;//.split(',');
     var n = 0;
     var l = document.getElementById("contador");
     var usu_ac = document.getElementById("usuarios_actuales");
@@ -46,10 +47,15 @@ function tiempo(data) {
                 console.log('ACABO', usu_actu, u);
             }
             console.log(n,n%5);
-            if(n%5 == 0){
+            if(n%5 == 0 && n >= 5){
                 console.log('minuto chao');
-                
+                console.log('a:', bus_a)
+                 console.log('b:', bus_b)
+                 console.log('c:', bus_c)
+                 console.log('d:', bus_d)
+
             }
+            if(n%33 == 0){}
             n++;
         }
         if (tiempo_suma >= time_total) {
@@ -79,10 +85,10 @@ function enteros(ent) {
  */
 function ingreso_estacion(ingreso, n = null, cant = null) {
     var div = document.getElementById('estacion');
-    
+
     if (ingreso < 0) {
-        div.style.border = '2px solid red';
-        div.classList.add('animated', 'infinite', 'flash');
+        div.style.border = '2px solid #ec7c0d';
+        div.classList.add('animated', 'flash');
         /*console.log('a:', bus_a)
          console.log('b:', bus_b)
          console.log('c:', bus_c)
@@ -115,16 +121,16 @@ function ingreso_estacion(ingreso, n = null, cant = null) {
 
 
 /*
- 
+
  */
 function tipo_persona(rnd) {
     var rt;
     if (rnd > 0.6) {
-        rt = 'circulo';
+        rt = 'rombo';
     } else if (rnd < 0.05) {
-        rt = 'cuadrado';
+        rt = 'cuadrado ';
     } else {
-        rt = 'circulo2';
+        rt = 'circulo';
     }
     return rt;
 }
@@ -133,27 +139,27 @@ function tipo_persona(rnd) {
 function a_que_bus(rnd, node, u, i) {
     //setTimeout(function(){
     if (rnd > 0 && rnd <= 0.25) {
-        if (bus_a <= capacidad_bus) {
+        if (bus_a < capacidad_bus) {
             style_person('#007bff', 'bounceInUp', 'busa');
-            document.getElementById('c_ba').innerHTML = bus_a;
+            document.getElementById('c_ba').innerHTML = bus_a+' A';
             bus_a++;
         }
     } else if (rnd > 0.25 && rnd <= 0.5) {
-        if (bus_b <= capacidad_bus) {
+        if (bus_b < capacidad_bus) {
             style_person('#17a2b8', 'bounceInUp', 'busb');
-            document.getElementById('c_bb').innerHTML = bus_b;
+            document.getElementById('c_bb').innerHTML = bus_b+' B';
             bus_b++;
         }
     } else if (rnd > 0.5 && rnd <= 0.75) {
-        if (bus_c <= capacidad_bus) {
+        if (bus_c < capacidad_bus) {
             style_person('#004085', 'bounceInDown', 'busc');
-            document.getElementById('c_bc').innerHTML = bus_c;
+            document.getElementById('c_bc').innerHTML = bus_c+' C';
             bus_c++;
         }
     } else if (rnd > 0.75 && rnd <= 1) {
-        if (bus_d <= capacidad_bus) {
+        if (bus_d < capacidad_bus) {
             style_person('#383d41', 'bounceInDown', 'busd');
-            document.getElementById('c_bd').innerHTML = bus_d;
+            document.getElementById('c_bd').innerHTML = bus_d+' D';
             bus_d++;
         }
     }
@@ -170,7 +176,7 @@ function style_person(color, movimiento, bus) {
     if (u > 1) {
         var at = document.getElementById('p_' + (u - 1));
         var cll = (at.getAttribute('class')).split(' ');
-        at.style.background = color;
+        //at.style.background = color;
         at.className = cll[0] + ' animated ' + movimiento;
         $(at).detach().appendTo('#' + bus);
         usu_actu--;

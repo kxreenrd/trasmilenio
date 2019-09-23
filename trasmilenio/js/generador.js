@@ -18,7 +18,7 @@ function generar(op) {
             x1 = multi(x1, a, m);
         }
     }
-    console.log(arr_mixto)
+    //console.log(arr_mixto)
     tiempo(arr_mixto);
     //exportar(arr_mixto);
 
@@ -26,11 +26,11 @@ function generar(op) {
 
 function mixto(semilla, a, c, m) {
     //x1 = (aX + c) mod m
-    console.log('a',a,'c', c, 'm', m, 'x1', x1, 'semilla', semilla);
+    //console.log('a',a,'c', c, 'm', m, 'x1', x1, 'semilla', semilla);
     var mul = a * semilla;
     var sum = mul + c;
     var x1 = sum % m;
-    console.log('r mixto', x1, (x1/m));
+    //console.log('r mixto', x1, (x1/m));
     return x1;
 
 }
@@ -46,7 +46,7 @@ function repetidos(arr, n){
   //console.log('arr',arr.length);
   for(var i in arr){
     if(arr[i] == n){
-      console.log('es repetido', n, arr[i], i, m);
+      //console.log('es repetido', n, arr[i], i, m);
       m = m*3;
       a = Math.floor(Math.random() * 10) + 1
       c = Math.floor(Math.random() * 10) + 1

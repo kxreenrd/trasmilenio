@@ -21,11 +21,12 @@
       <div id="sol"></div>
       <div id="luna"></div>
       <div class="row"></div>
-
         <div class="espacio" >
             <div class="row">
+
               <div class="btn btn-info" onclick="tiempo(data)"> Iniciar </div>
-                <div class="col amrg">
+                <div class="col amrg" style="text-align: center;">
+                  <span class="badge badge-info" id="tiempo"> Hora </span>
                     Tiempo: <span class="badge badge-info" id="contador"> </span>
                     Usuarios actuales en la estacion:<span class="badge badge-info" id="usuarios_actuales"> </span>
                     <div class="btn btn-primary" style="display:none"> <a id="descargar">descarga</a> </div>

@@ -986,7 +986,7 @@
 .bounceInLeft {
   -webkit-animation-name: bounceInLeft;
   animation-name: bounceInLeft;
-  animation-iteration-count: 1;
+  /*animation-iteration-count: 1;*/
 }
 
 @-webkit-keyframes bounceInRight {

@@ -12,7 +12,7 @@ var h_pico1_i = '5:30am';
 var h_pico1_f = '8:00am';
 var h_pico2_i = '4:30pm';
 var h_pico2_f = '8:00pm';
-var time_interval = 100;//10min * 60 = 600s * 1000 = 600.000
+var time_interval = 500;//10min * 60 = 600s * 1000 = 600.000
 var time_total = 600000;
 var tiempo_suma = 0;
 var usu_actu = 0; //usuarios actuales
@@ -31,6 +31,7 @@ function tiempo(data) {
     var l = document.getElementById("contador");
     var usu_ac = document.getElementById("usuarios_actuales");
     var im = window.setInterval(function () {
+      hora(n);
         if (n < time_total) {
             l.innerHTML = n; //tiempo
             var ent = d[n] * 10;
@@ -46,25 +47,44 @@ function tiempo(data) {
                 ingreso_estacion(-1);
                 console.log('ACABO', usu_actu, u);
             }
-            console.log(n,n%5);
+
             if(n%5 == 0 && n >= 5){
-                console.log('minuto chao');
-                console.log('a:', bus_a)
+
+                /*console.log('a:', bus_a)
                  console.log('b:', bus_b)
                  console.log('c:', bus_c)
-                 console.log('d:', bus_d)
+                 console.log('d:', bus_d)*/
 
             }
             if(n%33 == 0){}
             n++;
         }
-        if (tiempo_suma >= time_total) {
+        /*if (tiempo_suma >= time_total) {
             clearInterval(im);
         }
-        tiempo_suma = tiempo_suma + time_interval;
+        tiempo_suma = tiempo_suma + time_interval;*/
 
-    }, time_interval);
+      }, time_interval);
 
+}
+
+function hora(n){
+  var div = document.getElementById('tiempo');
+  //console.log(n);
+
+  var horas = 4, minutos = Math.round(n*5);
+  if(minutos >= 60){
+      var min = Math.trunc(minutos/60);
+      horas += min;
+      minutos -= (min*60);
+      if(minutos%10==0){
+        console.log(minutos,'minuto chao', chai);
+        buses();
+      }
+  }
+  console.log('horas',horas,'minutos',minutos)
+  var v_m = (minutos < 10)? '0'+minutos: minutos;
+  div.innerHTML = horas+':'+v_m;
 }
 /*
  Devuelve el numero aleatorio decimal en entero
@@ -183,6 +203,21 @@ function style_person(color, movimiento, bus) {
         //console.log(' resta usu_actu', usu_actu);
     }
 
+}
+var chai=0;
+function buses(){
+  chai++;
+  document.getElementById('busa').classList.add('animated',  'bounceInLeft');
+  document.getElementById('busb').classList.add('animated',  'bounceInLeft');
+
+  document.getElementById('busc').classList.add('animated',  'bounceInRight');
+  document.getElementById('busd').classList.add('animated',  'bounceInRight');
+  setTimeout(function(){
+    document.getElementById('busa').classList.remove('animated',  'bounceInLeft');
+    document.getElementById('busb').classList.remove('animated',  'bounceInLeft');
+    document.getElementById('busc').classList.remove('animated',  'bounceInRight');
+    document.getElementById('busd').classList.remove('animated',  'bounceInRight');
+  }, 900)
 }
 
 

@@ -12,8 +12,8 @@ var h_pico1_i = '5:30am';
 var h_pico1_f = '8:00am';
 var h_pico2_i = '4:30pm';
 var h_pico2_f = '8:00pm';
-var time_interval = 500;//10min * 60 = 600s * 1000 = 600.000
-var time_total = 600000;
+var time_interval = 1000;//10min * 60 = 600s * 1000 = 600.000
+var time_total = 600;
 var tiempo_suma = 0;
 var usu_actu = 0; //usuarios actuales
 var d;
@@ -25,6 +25,7 @@ var bus_c = 0;
 var bus_d = 0;
 
 function tiempo(data) {
+
     //d = data.split(',');
     d = data;//.split(',');
     var n = 0;
@@ -34,6 +35,7 @@ function tiempo(data) {
       hora(n);
         if (n < time_total) {
             l.innerHTML = n; //tiempo
+            //console.log(d[n]);
             var ent = d[n] * 10;
             var round = enteros(ent);
             usu_actu += round;
@@ -48,15 +50,8 @@ function tiempo(data) {
                 console.log('ACABO', usu_actu, u);
             }
 
-            if(n%5 == 0 && n >= 5){
 
-                /*console.log('a:', bus_a)
-                 console.log('b:', bus_b)
-                 console.log('c:', bus_c)
-                 console.log('d:', bus_d)*/
 
-            }
-            if(n%33 == 0){}
             n++;
         }
         /*if (tiempo_suma >= time_total) {
@@ -72,17 +67,21 @@ function hora(n){
   var div = document.getElementById('tiempo');
   //console.log(n);
 
-  var horas = 4, minutos = Math.round(n*5);
+  var horas = 4, minutos = Math.round(n);
+  //console.log('minutos1',minutos)
+  if(minutos%5==0 && minutos > 4){
+    console.log(minutos,'minuto chao', chai);
+    buses();
+  }
   if(minutos >= 60){
       var min = Math.trunc(minutos/60);
       horas += min;
       minutos -= (min*60);
-      if(minutos%10==0){
-        console.log(minutos,'minuto chao', chai);
-        buses();
-      }
+
   }
-  console.log('horas',horas,'minutos',minutos)
+  //console.log('minutos2',minutos)
+
+  //console.log('horas',horas,'minutos',minutos)
   var v_m = (minutos < 10)? '0'+minutos: minutos;
   div.innerHTML = horas+':'+v_m;
 }
@@ -98,6 +97,7 @@ function enteros(ent) {
         ent *= 10;
         round = Math.round(ent);
     }
+    //console.log(round);
     return round;
 }
 /*
@@ -109,12 +109,11 @@ function ingreso_estacion(ingreso, n = null, cant = null) {
     if (ingreso < 0) {
         div.style.border = '2px solid #ec7c0d';
         div.classList.add('animated', 'flash');
-        /*console.log('a:', bus_a)
-         console.log('b:', bus_b)
-         console.log('c:', bus_c)
-         console.log('d:', bus_d)*/
+        console.log('aqui que', usu_actu);
     } else {
         //u++;
+        console.log('u1->', u);
+        console.log(cant);
         if (cant > 0) {
             var inter = time_interval / cant;
             var i = 1;
@@ -157,7 +156,6 @@ function tipo_persona(rnd) {
 
 
 function a_que_bus(rnd, node, u, i) {
-    //setTimeout(function(){
     if (rnd > 0 && rnd <= 0.25) {
         if (bus_a < capacidad_bus) {
             style_person('#007bff', 'bounceInUp', 'busa');
@@ -183,23 +181,19 @@ function a_que_bus(rnd, node, u, i) {
             bus_d++;
         }
     }
-    /*console.log('a:', bus_a)
-    console.log('b:', bus_b)
-    console.log('c:', bus_c)
-    console.log('d:', bus_d)*/
-
-    //},100);
 }
 
 function style_person(color, movimiento, bus) {
-
+  console.log('u->',u);
     if (u > 1) {
         var at = document.getElementById('p_' + (u - 1));
         var cll = (at.getAttribute('class')).split(' ');
         //at.style.background = color;
         at.className = cll[0] + ' animated ' + movimiento;
         $(at).detach().appendTo('#' + bus);
+        console.log('usu_actu1',usu_actu);
         usu_actu--;
+        console.log('usu_actu2',usu_actu);
         //console.log(' resta usu_actu', usu_actu);
     }
 

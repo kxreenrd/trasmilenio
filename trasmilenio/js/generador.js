@@ -6,7 +6,7 @@ var x1 = Math.floor(Math.random() * 10) + 1
 
 function generar(op) {
 
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 1000; i++) {
         if (op == 1) { //mixto
 
           var div = x1/m;

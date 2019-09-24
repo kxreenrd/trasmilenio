@@ -34,7 +34,7 @@
   margin-top: 15px;
 }
 
-
+/*NIÑOS*/
 .circulo {
      width: 10px;
      height: 10px;
@@ -48,7 +48,7 @@
     padding-top: 3px;
 }
 
-
+/*DISCAPACITADOS*/
 .cuadrado {
      width: 10px;
      height: 10px;
@@ -60,6 +60,7 @@
      text-align: center;
      padding-top: 3px;
 }
+/*ADULTO*/
 .rombo {
      width: 10px;
      height: 10px;
@@ -77,7 +78,7 @@ body{
   background-color: #ccccff;
   margin: 0;
   overflow-y: hidden;
-  animation: sky 8s 2s forwards;
+  animation: sky 8s 20s forwards;
 }
 
 @keyframes sky {
@@ -93,7 +94,7 @@ body{
   border-radius: 50%;
   position: absolute;
 
-  animation: sunset 15s ;
+  animation: sunset 150s ;
   left: 5%;
   top:5%;
 }
@@ -119,7 +120,7 @@ body{
   left: 5%;
   top:5%;
   opacity: 0;
-  animation: moon 0.7s 7s forwards;
+  animation: moon 0.7s 70s forwards;
 }
 
 @keyframes moon {

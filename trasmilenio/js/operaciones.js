@@ -4,19 +4,18 @@ var adultos = habitantes * 0.9; //espacio = 0.5m^2 //270.000
 var discapacitados = habitantes * 0.05; //espacio = 1m^2 //13.500
 let capacidad_estacion = 430;//430;
 let capacidad_bus = 275;//275;
-var tiempo_llegada = 5;
-var tiempo_espera = 1;
-var h_inicio = 4; //4am
-var h_fin = 23; // 11pm
+
+
 var h_pico1_i = '5:30am';
 var h_pico1_f = '8:00am';
 var h_pico2_i = '4:30pm';
 var h_pico2_f = '8:00pm';
-var time_interval = 1000;//10min * 60 = 600s * 1000 = 600.000
-var time_total = 600;
-var tiempo_suma = 0;
+
+var time_interval = 1000;
+var time_total = 1140 ;
+
+
 var usu_actu = 0; //usuarios actuales
-var d;
 var u = 0; //numero usuario
 
 var bus_a = 0;
@@ -24,10 +23,15 @@ var bus_b = 0;
 var bus_c = 0;
 var bus_d = 0;
 
-function tiempo(data) {
+var buses_derecha = 0;
+var buses_izquierda = 0;
+
+var t_buses = {};
+
+function tiempo() {
 
     //d = data.split(',');
-    d = data;//.split(',');
+    //d = data;//.split(',');
     var n = 0;
     var l = document.getElementById("contador");
     var usu_ac = document.getElementById("usuarios_actuales");
@@ -35,13 +39,15 @@ function tiempo(data) {
       hora(n);
         if (n < time_total) {
             l.innerHTML = n; //tiempo
-            //console.log(d[n]);
-            var ent = d[n] * 10;
+            //console.log('>',d[n]);
+
+            var ent = pedir_dato() ;
+            //var ent = d[n] * 10;
             var round = enteros(ent);
             usu_actu += round;
             //console.log('usu_actu', usu_actu);
             if (usu_actu < capacidad_estacion) {
-                ingreso_estacion(usu_actu, d[n], round);
+                ingreso_estacion(usu_actu, pedir_dato(), round);
                 document.getElementById('c_estacion').innerHTML = usu_actu;
                 usu_ac.innerHTML = usu_actu; //usuarios actuales
             } else {
@@ -49,10 +55,9 @@ function tiempo(data) {
                 ingreso_estacion(-1);
                 console.log('ACABO', usu_actu, u);
             }
-
-
-
             n++;
+        } else {
+          clearInterval(im);
         }
         /*if (tiempo_suma >= time_total) {
             clearInterval(im);
@@ -68,10 +73,11 @@ function hora(n){
   //console.log(n);
 
   var horas = 4, minutos = Math.round(n);
-  //console.log('minutos1',minutos)
   if(minutos%5==0 && minutos > 4){
     console.log(minutos,'minuto chao', chai);
-    buses();
+    t_buses[minutos+'_ida'] = {'bus_a': bus_a, 'bus_b': bus_b, 'bus_c':bus_c, 'bus_d': bus_d};
+    console.log(t_buses);
+    buses(n, minutos);
   }
   if(minutos >= 60){
       var min = Math.trunc(minutos/60);
@@ -79,11 +85,10 @@ function hora(n){
       minutos -= (min*60);
 
   }
-  //console.log('minutos2',minutos)
-
-  //console.log('horas',horas,'minutos',minutos)
   var v_m = (minutos < 10)? '0'+minutos: minutos;
   div.innerHTML = horas+':'+v_m;
+  document.getElementById('time1').innerHTML = horas+':'+v_m;
+  console.log('HORA:',horas,':',v_m);
 }
 /*
  Devuelve el numero aleatorio decimal en entero
@@ -97,7 +102,7 @@ function enteros(ent) {
         ent *= 10;
         round = Math.round(ent);
     }
-    //console.log(round);
+    //console.log('entero: ',round);
     return round;
 }
 /*
@@ -109,11 +114,10 @@ function ingreso_estacion(ingreso, n = null, cant = null) {
     if (ingreso < 0) {
         div.style.border = '2px solid #ec7c0d';
         div.classList.add('animated', 'flash');
-        console.log('aqui que', usu_actu);
+        //console.log('aqui que', usu_actu);
     } else {
         //u++;
-        console.log('u1->', u);
-        console.log(cant);
+
         if (cant > 0) {
             var inter = time_interval / cant;
             var i = 1;
@@ -122,7 +126,7 @@ function ingreso_estacion(ingreso, n = null, cant = null) {
                 var node = document.createElement("div");
                 node.id = 'p_' + u;
                 //console.log(,u)
-                node.innerHTML = u;
+                //node.innerHTML = u;
                 node.className = tipo_persona(n) + ' animated bounceInLeft';
                 document.getElementById("estacion").appendChild(node);
                 if (i == cant) {
@@ -161,68 +165,77 @@ function a_que_bus(rnd, node, u, i) {
             style_person('#007bff', 'bounceInUp', 'busa');
             document.getElementById('c_ba').innerHTML = bus_a+' A';
             bus_a++;
+            buses_derecha++;
         }
     } else if (rnd > 0.25 && rnd <= 0.5) {
         if (bus_b < capacidad_bus) {
             style_person('#17a2b8', 'bounceInUp', 'busb');
             document.getElementById('c_bb').innerHTML = bus_b+' B';
             bus_b++;
+            buses_derecha++;
         }
     } else if (rnd > 0.5 && rnd <= 0.75) {
         if (bus_c < capacidad_bus) {
             style_person('#004085', 'bounceInDown', 'busc');
             document.getElementById('c_bc').innerHTML = bus_c+' C';
             bus_c++;
+            buses_izquierda++;
         }
     } else if (rnd > 0.75 && rnd <= 1) {
         if (bus_d < capacidad_bus) {
             style_person('#383d41', 'bounceInDown', 'busd');
             document.getElementById('c_bd').innerHTML = bus_d+' D';
             bus_d++;
+            buses_izquierda++;
         }
     }
 }
 
 function style_person(color, movimiento, bus) {
-  console.log('u->',u);
+  //console.log('u->',u);
     if (u > 1) {
         var at = document.getElementById('p_' + (u - 1));
         var cll = (at.getAttribute('class')).split(' ');
         //at.style.background = color;
         at.className = cll[0] + ' animated ' + movimiento;
         $(at).detach().appendTo('#' + bus);
-        console.log('usu_actu1',usu_actu);
+        //console.log('usu_actu1',usu_actu);
         usu_actu--;
-        console.log('usu_actu2',usu_actu);
+        //console.log('usu_actu2',usu_actu);
         //console.log(' resta usu_actu', usu_actu);
     }
 
 }
 var chai=0;
-function buses(){
+function buses(n, minutos){
   chai++;
   document.getElementById('busa').classList.add('animated',  'bounceInLeft');
   document.getElementById('busb').classList.add('animated',  'bounceInLeft');
-
   document.getElementById('busc').classList.add('animated',  'bounceInRight');
   document.getElementById('busd').classList.add('animated',  'bounceInRight');
   setTimeout(function(){
     document.getElementById('busa').classList.remove('animated',  'bounceInLeft');
+    //document.getElementById('busa').innerHTML = '';
     document.getElementById('busb').classList.remove('animated',  'bounceInLeft');
+    //document.getElementById('busb').innerHTML = '';
     document.getElementById('busc').classList.remove('animated',  'bounceInRight');
+    //document.getElementById('busc').innerHTML = '';
     document.getElementById('busd').classList.remove('animated',  'bounceInRight');
-  }, 900)
+    //document.getElementById('busd').innerHTML = '';
+  }, 900);
+  //console.log('- ', pedir_dato(), n, u);
+
+  bus_a = enteros(pedir_dato());
+  bus_b = enteros(pedir_dato());
+  bus_c = enteros(pedir_dato());
+  bus_d = enteros(pedir_dato());
+  //console.log('bus_a', bus_a, 'bus_b', bus_b, 'bus_c',bus_c, 'bus_d', bus_d);
+  t_buses[minutos+'_llegada'] = {'bus_a': bus_a, 'bus_b': bus_b, 'bus_c':bus_c, 'bus_d': bus_d};
+  respuestas();
 }
 
-
-window.onload = function () {
-    //tiempo();
-    //setInterval(tiempo, 1000);
+function respuestas(){
+  document.getElementById('q_1').innerHTML = buses_derecha+buses_izquierda;
+  document.getElementById('q_2').innerHTML = buses_derecha;
+  document.getElementById('q_3').innerHTML = buses_izquierda;
 }
-
-
-/*
- * Se definen 4 buses A,B,C y D
- * Donde A & B son de salida y C & D son de llegada
- *
- */

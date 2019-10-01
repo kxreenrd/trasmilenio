@@ -5,8 +5,8 @@
 }
 
 .espacio{
-  margin: 30px;
-  margin-top: 15%;
+  margin: 5%;
+  /*margin-top: 15%;*/
 }
 
 .cantidad{
@@ -74,17 +74,19 @@
      padding-top: 3px;
 }
 
-body{
-  background-color: #ccccff;
+/*body{
+  background-color: #6B228b;
   margin: 0;
   overflow-y: hidden;
-  animation: sky 8s 20s forwards;
+  animation-name: sky ;
+  animation-duration: 50s;
 }
 
 @keyframes sky {
-  50% {background-color: #ffd700;}
-  65% {background-color: #ffb90f;}
-  90% {background-color: #b39800;}
+  1% {background-color: #ccccff;}
+  40% {background-color: #ffd700;}
+  60% {background-color: #ffb90f;}
+  80% {background-color: #b39800;}
   100% {background-color: #6B228b;}
 }
 
@@ -94,7 +96,7 @@ body{
   border-radius: 50%;
   position: absolute;
 
-  animation: sunset 150s ;
+  animation: sunset 70s ;
   left: 5%;
   top:5%;
 }
@@ -102,7 +104,7 @@ body{
 @keyframes sunset {
   1% { background-color: #ff8c1a;
   box-shadow: 0px 0px 20px 5px #ff8c1a;}
-  60%{box-shadow: 0px 0px 20px 5px #f35c0e;}
+  70%{box-shadow: 0px 0px 20px 5px #f35c0e;}
   80%{box-shadow: 0px 0px 20px 5px #6B228b; }
   100% {transform: translateX(700px);
   opacity: 0;
@@ -120,9 +122,9 @@ body{
   left: 5%;
   top:5%;
   opacity: 0;
-  animation: moon 0.7s 70s forwards;
+  animation: moon 1s 60s forwards;
 }
 
 @keyframes moon {
   100% {opacity: 1}
-}
+}*/

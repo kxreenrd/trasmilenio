@@ -1,0 +1,117 @@
+body{
+    overflow:hidden; /*Hiding all Stuff */
+}
+
+#sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 900%; /* This must be in a factor of three */
+    background-image: -webkit-linear-gradient(top, rgba(30,152,209,1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%,
+        rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%,   rgba(197, 127, 81, 0.82) 55%,
+        rgba(5, 5, 5, 1) 66%,  rgb(54, 55, 56) 77%,    rgb(3, 3, 3) 100%);
+    background-image: -moz-linear-gradient(top, rgba(30,152,209,1) 0%, rgb(202, 229, 243) 11%, rgba(125, 185, 232, 0.82) 22%,
+        rgb(240, 231, 26) 33%, rgb(245, 86, 12) 44%,   rgba(197, 127, 81, 0.82) 55%,
+        rgba(5, 5, 5, 1) 66%,  rgb(54, 55, 56) 77%,    rgb(3, 3, 3) 100%);
+    -webkit-animation-name: changeSkyColor; /* Change Shiny Sky to evening sky and to darkness */  /* Safari and Chrome */
+    -webkit-animation-duration: 250s; /* Total time of animation */
+    -webkit-animation-timing-function: linear; /* Just another timing function */
+    -webkit-animation-iteration-count: infinite; /* Lets repeat sunrise and sunset till world ends :) */
+    -webkit-animation-direction: alternate; /* Lets do in alternate fashion */
+    -moz-animation-name: changeSkyColor; /* Change Shiny Sky to evening sky and to darkness */  /* Mozzilla */
+    -moz-animation-duration: 250s; /* Total time of animation */
+    -moz-animation-timing-function: linear; /* Just another timing function */
+    -moz-animation-iteration-count: infinite; /* Lets repeat sunrise and sunset till world ends :) */
+    -moz-animation-direction: alternate; /* Lets do in alternate fashion */
+}
+
+@-webkit-keyframes changeSkyColor /* Safari and Chrome */
+{
+    0%{
+        top: 0px;
+    }
+    100% {
+        top: -800%; /* #sky's height - 100% */
+    }
+}
+@-moz-keyframes changeSkyColor /* Mozilla */
+{
+
+    0%{
+        top: 0px;
+    }
+    100%  {
+        top: -800%; /* #sky's height - 100% */
+    }
+}
+li {
+    list-style-type: none;/*Eliminating all pointers */
+}
+#sun{
+
+    position:absolute; /* So you can use for animation */
+    width:50px; /* Width of sun */
+    height:50px; /* Height of sun */
+    border-radius:100px; /* So it will be as circle */
+    /*z-index:3; /* So sun is little above sky :) */
+    left:95%; /* Position of Sun in screen */
+    -webkit-animation-name: changeSunColor; /* Change Shiny Sun to evening sun and to a moon */  /* Safari and Chrome */
+    -webkit-animation-duration: 200s; /* Total time of animation */
+    -webkit-animation-timing-function: linear; /* Just another timing function */
+    -webkit-animation-iteration-count: infinite; /* Lets repeat sunrise and sunset till world ends :) */
+    -webkit-animation-direction: alternate; /* Lets do in alternate fashion */
+    -moz-animation-name: changeSunColor; /* Change Shiny Sun to evening sun and to a moon */  /* Mozzilla */
+    -moz-animation-duration: 200s; /* Total time of animation */
+    -moz-animation-timing-function: linear; /* Just another timing function */
+    -moz-animation-iteration-count: infinite; /* Lets repeat sunrise and sunset till world ends :) */
+    -moz-animation-direction: alternate; /* Lets do in alternate fashion */
+}
+@-webkit-keyframes changeSunColor /* Safari and Chrome */
+{
+
+    0%{
+        -webkit-box-shadow: inset 2px 2px 12px 3px yellow,2px 2px 15px 15px yellow; /* For sun rays effect */
+        background-color:white; /* Color of sun */
+        top:2%;
+    }
+    33%  {
+        background-color: orangered; /* Color of sun */
+        top:56%;
+        -webkit-box-shadow: inset 1px 1px 15px 5px rgba(255, 255, 0, 0.59),1px 1px 15px 5px yellow; /* For sun rays effect */
+    }
+    66%  {
+        background-color: white; /* Color of sun */
+        top:96%;
+        -webkit-box-shadow: inset 1px 1px 15px 5px white,1px 1px 15px 5px white; /* For sun rays effect */
+    }
+    100% {
+        -webkit-box-shadow: inset 2px 2px 12px 3px white,2px 2px 15px 15px white; /* For Moon rays effect */
+        background-color:white; /* Color of sun */
+        top:32%;
+    }
+}
+@-moz-keyframes changeSunColor /* Mozzilla */
+{
+
+    0%{
+        -moz-box-shadow: inset 2px 2px 12px 3px yellow,2px 2px 15px 15px yellow; /* For sun rays effect */
+        background-color:white; /* Color of sun */
+        top:2%;
+    }
+    33%  {
+        background-color: orangered; /* Color of sun */
+        top:56%;
+        -moz-box-shadow: inset 1px 1px 15px 5px rgba(255, 255, 0, 0.59),1px 1px 15px 5px yellow; /* For sun rays effect */
+    }
+    66%  {
+        background-color: white; /* Color of sun */
+        top:96%;
+        -moz-box-shadow: inset 1px 1px 15px 5px white,1px 1px 15px 5px white; /* For sun rays effect */
+    }
+    100% {
+        -moz-box-shadow: inset 2px 2px 12px 3px white,2px 2px 15px 15px white; /* For Moon rays effect */
+        background-color:white; /* Color of sun */
+        top:32%;
+    }
+}

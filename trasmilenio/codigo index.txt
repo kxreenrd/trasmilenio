@@ -1,0 +1,32 @@
+        <script>
+            var elem = document.getElementById('descargar');
+
+            function exportar(contenidoDeArchivo) {
+                //console.log('contenidoDeArchivo',contenidoDeArchivo);
+                var obj = contenidoDeArchivo.toString();
+                //console.log('obj',obj);
+                elem.download = "aleatorios.txt";
+                elem.href = "data:application/octet-stream," + encodeURIComponent(contenidoDeArchivo);
+
+            }
+
+
+<?php
+
+$nombre_fichero = getcwd() . "\aleatorios.txt";
+if (file_exists($nombre_fichero)) {
+    $f = fopen($nombre_fichero, "r");
+    ?>
+                var data = "<?php echo fgets($f); ?>";
+                //console.log('la data',data);
+                //tiempo(data);
+    <?php
+} else {
+    ?>
+                //console.log(elem);
+                generar(1);
+                //setTimeout(function(){elem.click();});
+    <?php
+}
+?>
+</script>

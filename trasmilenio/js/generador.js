@@ -76,17 +76,47 @@ function prueba_promedio() {
      //console.log('resul',resul);
      if (resul < 1.96) {
           console.log('si que si');
-          tiempo();
-          //prueba();
+          //tiempo();
+          prueba_frecuencia();
      } else {
           console.log('no que no');
-          location.reload();
+          generar(1);
      }
 
 
 }
 
-function prueba_frecuencia(arr) {
+function prueba_frecuencia() {
+     var pq1 = 0, pq2 = 0, pq3 = 0, pq4 = 0, pq5 = 0;
+     for (var i in arr_mixto) {
+          if (arr_mixto[i] >= 0 && arr_mixto[i] < 0.2) {
+               pq1++;
+          } else if(arr_mixto[i] >= 0.2 && arr_mixto[i] < 0.4){
+               pq2++;
+          } else if (arr_mixto[i] >= 0.4 && arr_mixto[i] < 0.6) {
+               pq3++;
+          } else if (arr_mixto[i] >= 0.6 && arr_mixto[i] < 0.8) {
+               pq4++;
+          } else if (arr_mixto[i] >= 0.8 && arr_mixto[i] <= 1) {
+               pq5++;
+          } else {
+               console.log('no esta en ningun rango, ',arr_mixto[i]);
+          }
+     }
+     var fe = n / 5;
+     for (var i = 0; i < 5; i++) {
+
+     }
+     var resta = pq1 - fe;
+     var den = Math.pow(resta, 2);
+     var res = den / fe;
+     console.log('paquete 1:',pq1);
+     console.log('paquete 2:',pq2);
+     console.log('paquete 3:',pq3);
+     console.log('paquete 4:',pq4);
+     console.log('paquete 5:',pq5);
+     console.log('fe:', fe, 'res: ', res, 'x2: ', Math.pow(res, 2));
+
 
 }
 

@@ -28,7 +28,8 @@ var buses_izquierda = 0;
 var t_buses = {};
 
 function tiempo() {
-
+  
+  console.log(g.arr());
      //d = data.split(',');
      //d = data;//.split(',');
      var n = 0;
@@ -40,13 +41,13 @@ function tiempo() {
                l.innerHTML = n; //tiempo
                //console.log('>',d[n]);
 
-               var ent = pedir_dato();
+               var ent = g.pedir_dato();
                //var ent = d[n] * 10;
                var round = enteros(ent);
                usu_actu += round;
                //console.log('usu_actu', usu_actu);
                if (usu_actu < capacidad_estacion) {
-                    ingreso_estacion(usu_actu, pedir_dato(), round);
+                    ingreso_estacion(usu_actu, g.pedir_dato(), round);
                     document.getElementById('c_estacion').innerHTML = usu_actu;
                     usu_ac.innerHTML = usu_actu; //usuarios actuales
                } else {

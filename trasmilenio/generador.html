@@ -1,102 +1,109 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-  <link rel="stylesheet" href="./adicionales/bootstrap/css/bootstrap.min.css">
-  <script href="./adicionales/bootstrap/js/bootstrap.min.js"></script>
-  <script href="./adicionales/jquery/jquery.min.js"></script>
-  <script href="./adicionales/popper/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./adicionales/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./css/animate.css">
-  <script type="text/javascript" src="./js/operaciones.js"></script>
-  <script type="text/javascript" src="./js/generador.js"></script>
+        <link rel="stylesheet" href="./adicionales/bootstrap/css/bootstrap.min.css">
+        <script href="./adicionales/bootstrap/js/bootstrap.min.js"></script>
+        <script href="./adicionales/jquery/jquery.min.js"></script>
+        <script href="./adicionales/popper/popper.min.js"></script>
 
 
-  <title>Generador</title>
-</head>
-
-<body>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1>Simulador de Transmilenio</h1>
-      <p>En el siguiente programa se simulará el flujo de una estación de Transmilenio con un generador de numero pseudoaleatorios</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="btn btn-primary" onclick="g.vista(1)">Congruencial Mixto</div>
-    <div class="btn btn-primary" onclick="g.vista(2)">Congruencial Multiplicativo</div>
-    <div class="btn btn-primary" data-toggle="modal" data-target="#myModal">Informe</div>
-  </div>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./adicionales/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/animate.css">
+        <script type="text/javascript" src="./js/operaciones.js"></script>
+        <script type="text/javascript" src="./js/generador.js"></script>
 
 
-  <div class="container">
-    <hr>
-    <div class="alert alert-danger" id="alert" style="display: none">
-      <strong>CAMPOS VACIOS!</strong> Por favor diligencie todos los campos
-    </div>
-    <h2>Datos</h2>
-    <form>
-      <div class="form-group">
-        <label for="semilla" class="mr-sm-2">semilla:</label>
-        <input type="number" class="form-control col-sm-4" id="semilla" placeholder="ingrese semilla" name="semilla">
-      </div>
-      <div class="form-group">
-        <label for="a" class="mr-sm-2">a:</label>
-        <input type="number" class="form-control col-sm-4" id="a" placeholder="ingrese a" name="a">
-      </div>
-      <div class="form-group" id="g_c">
-        <label for="c" class="mr-sm-2">c:</label>
-        <input type="number" class="form-control col-sm-4" id="c" placeholder="ingrese c" name="c">
-      </div>
-      <div class="form-group">
-        <label for="m" class="mr-sm-2">m:</label>
-        <input type="number" class="form-control col-sm-4" id="m" placeholder="ingrese m" name="m">
-      </div>
-      <div class="btn btn-primary" onclick="g.definir()" >Generar</div>
-    </form>
-<div id="aprobar" class="btn btn-success pull-right" style="display: none" onclick="javascript:location.href = './index.html'">Aprobar</div>
+        <title>Generador</title>
+    </head>
 
-  </div>
-
-  <div class="modal" id="myModal">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Tablas</h4>
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <embed src="./doc/tablas.pdf" width="100%" height="500px" type="application/pdf">
-          <div>
-
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1>Simulador de Transmilenio</h1>
+                <p>En el siguiente programa se simulará el flujo de una estación de Transmilenio con un generador de numero pseudoaleatorios</p>
             </div>
-
-          </div>
         </div>
-      </div>
-</body>
+
+        <div class="container">
+            <div class="btn btn-primary" onclick="g.vista(1)">Congruencial Mixto</div>
+            <div class="btn btn-primary" onclick="g.vista(2)">Congruencial Multiplicativo</div>
+            <div class="btn btn-primary" data-toggle="modal" data-target="#myModal">Informe</div>
+        </div>
+
+
+        <div class="container">
+            <hr>
+            <div class="alert alert-danger" id="alert" style="display: none">
+                <strong>CAMPOS VACIOS!</strong> Por favor diligencie todos los campos
+            </div>
+            <h2>Datos</h2>
+            <form>
+                <div class="form-group">
+                    <label for="semilla" class="mr-sm-2">semilla:</label>
+                    <input type="number" class="form-control col-sm-4" id="semilla" placeholder="ingrese semilla" name="semilla">
+                </div>
+                <div class="form-group">
+                    <label for="a" class="mr-sm-2">a:</label>
+                    <input type="number" class="form-control col-sm-4" id="a" placeholder="ingrese a" name="a">
+                </div>
+                <div class="form-group" id="g_c">
+                    <label for="c" class="mr-sm-2">c:</label>
+                    <input type="number" class="form-control col-sm-4" id="c" placeholder="ingrese c" name="c">
+                </div>
+                <div class="form-group">
+                    <label for="m" class="mr-sm-2">m:</label>
+                    <input type="number" class="form-control col-sm-4" id="m" placeholder="ingrese m" name="m">
+                </div>
+                <div class="btn btn-primary" onclick="g.definir()" >Generar</div>
+            </form>
+            <div id="aprobar" class="btn btn-success pull-right" style="display: none" onclick="javascript:location.href = './index.html'; ">Aprobar</div>
+
+        </div>
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Tablas</h4>
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!--                        <embed src="./doc/tablas.pdf" width="100%" height="500px" type="application/pdf">-->
+                        <iframe src="./doc/tablas.pdf" style="width:100%; height:500px;" frameborder="0"></iframe>
+                    </div>
+
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div>
+            
+        </div>
+    </body>
 
 </html>
